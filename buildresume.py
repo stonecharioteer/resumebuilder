@@ -23,17 +23,34 @@ information entry.
 #TODO: Need to figure out a structure for the JSONs.
 
 import argparse
-
+import os
 if __name__ == "__main__":
     print("ok")
     desc = "Resume Builder Run Script"
     parser = argparse.ArgumentParser(description = desc)
+    default_dir = os.path.join(os.getcwd(), "data")
     parser.add_argument(
-                        "path", 
-                        metavar="P",
-                        type=str,
-                        default="data",
-                        help="Path to data"
+                        "-d",
+                        "--data", 
+                        type=str, #path is a string
+                        default=default_dir,
+                        help="Path to data folder."
                         )
+    parser.add_argument(
+                        "-v", "--verbose",
+                        action="store_true",
+                        help=("increase output "
+                                "verbosity")
+                    )
     args = parser.parse_args()
-    print(args.path)
+    path_to_data = args.data
+    if args.verbose:
+        print("Verbose mode on.")
+    if not os.path.isdir(path_to_data):
+        message = ("No data folder "
+                    "available at"
+                    " {}.").format(path_to_data)
+        print(message)
+
+
+
