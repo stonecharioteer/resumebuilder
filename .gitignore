@@ -1,8 +1,5 @@
 #Project-specific
-data/experience/*.*
-data/projects/*.*
-data/*.*
-data/education/*.*
+data/*
 data/**/images/*.*
 
 
